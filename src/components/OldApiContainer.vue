@@ -29,12 +29,8 @@ export default defineComponent({
           //console.log(response.data);
           const data = response.data;
 
-      console.log(new URL(location.href));
-
           let url = new URL(location.href);
           let id = url.searchParams.get("id");
-
-          console.log(id);
 
           let decimal = Number(id);
           console.log(data[decimal]);
