@@ -1,16 +1,13 @@
 <template>
 
-
-    <ion-button color="success" size="large" rel="noopener noreferrer" href="/tabs/tab2">Knopf</ion-button>
-
-
+  <div id="container">
+    <br>
+    <br>
+    <br>
   <button @click="count++">+ 1</button>
   <p>Anzahl: {{ count }}</p>
+  </div>
 
-  <ion-item>
-    <ion-label position="floating">Schreibe eine Zahl hier:</ion-label>
-    <ion-input type="number" placeholder="0"></ion-input>
-  </ion-item>
 </template>
 
 <script lang="ts">
@@ -20,7 +17,7 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar,
   IonButton,IonItem,IonInput,IonLabel } from '@ionic/vue';
 
 export default defineComponent({
-  name: 'ButtonContainer',
+  name: 'CountButton',
   components: {
     //IonContent,
     //IonHeader,
@@ -46,7 +43,6 @@ export default defineComponent({
   position: absolute;
   left: 0;
   right: 0;
-  top: 50%;
   transform: translateY(-50%);
 }
 

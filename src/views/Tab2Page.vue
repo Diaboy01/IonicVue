@@ -11,8 +11,13 @@
           <ion-title size="large">Tab 2</ion-title>
         </ion-toolbar>
       </ion-header>
-      
-      <ExploreContainer name="Tab 2 page" />
+
+      <div id="container">
+
+        <CountButton name="CountButton" />
+        <OldApiContainer name="OldApiContainer" />
+
+      </div>
     </ion-content>
   </ion-page>
 </template>
@@ -20,10 +25,11 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
-import ExploreContainer from '@/components/ExploreContainer.vue';
+import OldApiContainer from '@/components/OldApiContainer.vue';
+import CountButton from "@/components/CountButton.vue";
 
 export default defineComponent({
   name: 'Tab2Page',
-  components: { ExploreContainer, IonHeader, IonToolbar, IonTitle, IonContent, IonPage }
+  components: {CountButton, OldApiContainer, IonHeader, IonToolbar, IonTitle, IonContent, IonPage }
 });
 </script>

@@ -1,36 +1,46 @@
 <template>
   <div id="container">
-    <div id="api"></div>
-    <ul>
-      <li v-for="character in daten" v-bind:key="character.id">
-        <CharacterView :character="character"/>
-
-      </li>
-    </ul>
-    {{ text }} <!-- FIXME Geht nicht -->
-    {{ toll }}
+    <br>
+    <br>
+    Name: {{ daten.fullName }}
+    <br>
+    Title: {{ daten.title }}
+    <br>
+    Family: {{ daten.family }}
+    <br>
+    <br>
+  <div id="api"></div>
   </div>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
 import axios from 'axios';
-import CharacterView from "@/components/CharacterView.vue";
 
 
 export default defineComponent({
-  name: 'ApiContainer',
+  name: 'OldApiContainer',
   components: {
-    CharacterView
   },
-
   data () {
+
+
     axios.get('https://thronesapi.com/api/v2/Characters').then((response) => {
           //console.log(response.data);
           const data = response.data;
-          this.daten = response.data;
-          //console.log(data['3']);
-          const selected = data['3']; //TODO Wählbare ID
+
+      console.log(new URL(location.href));
+
+          let url = new URL(location.href);
+          let id = url.searchParams.get("id");
+
+          console.log(id);
+
+          let decimal = Number(id);
+          console.log(data[decimal]);
+
+          const selected = data[decimal];
+          this.daten = data[decimal];
 
           const replacer = ["imageUrl"]
           let string = JSON.stringify(selected, replacer, " ");
@@ -55,7 +65,7 @@ export default defineComponent({
 
           var text = node.textContent
           //console.log(text);
-          let nodeString = '<img src="' + text + '" alt="Testbild">'
+          let nodeString = '<img style="width:20%" src="' + text + '" alt="Testbild">'
           api?.insertAdjacentHTML('beforeend', nodeString);
           return text; //FIXME Geht nicht
         })
@@ -65,8 +75,7 @@ export default defineComponent({
         })
 
 return {
-  daten: [], //FIXME Geht nicht
-  toll: "Tolles Bild",
+  daten: [],
 }
   },
 });
@@ -78,18 +87,15 @@ return {
   position: absolute;
   left: 0;
   right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 10%;
 }
 
 #container strong {
   font-size: 20px;
-  line-height: 26px;
 }
 
 #container p {
   font-size: 16px;
-  line-height: 22px;
   color: #8c8c8c;
   margin: 0;
 }

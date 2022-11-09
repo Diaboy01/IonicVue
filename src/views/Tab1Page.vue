@@ -13,10 +13,7 @@
       </ion-header>
 
       <div id="container">
-        <ApiContainer name="ApiContainer" />
-
-        <ButtonContainer name="ButtonContainer" />
-
+        <NewApiContainer name="NewApiContainer" />
 
       </div>
     </ion-content>
@@ -26,12 +23,11 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
-import ApiContainer from '@/components/ApiContainer.vue';
-import ButtonContainer from '@/components/ButtonContainer.vue';
+import NewApiContainer from '@/components/NewApiContainer.vue';
 
 export default  defineComponent({
   name: 'Tab1Page',
-  components: {ButtonContainer, ApiContainer, IonHeader, IonToolbar, IonTitle, IonContent, IonPage }
+  components: {NewApiContainer, IonHeader, IonToolbar, IonTitle, IonContent, IonPage }
 });
 
 </script>
