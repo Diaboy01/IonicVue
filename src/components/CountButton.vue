@@ -4,17 +4,19 @@
     <br>
     <br>
     <br>
-  <button @click="count++">+ 1</button>
-  <p>Anzahl: {{ count }}</p>
+    <button @click="count++">+ 1</button>
+    <p>Anzahl: {{ count }}</p>
   </div>
 
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import {defineComponent} from 'vue';
 
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar,
-  IonButton,IonItem,IonInput,IonLabel } from '@ionic/vue';
+import {
+  IonContent, IonHeader, IonPage, IonTitle, IonToolbar,
+  IonButton, IonItem, IonInput, IonLabel
+} from '@ionic/vue';
 
 export default defineComponent({
   name: 'CountButton',

@@ -1,10 +1,11 @@
 <template>
   <ul class="list-rendering">
-    <li v-for="character in daten" v-bind:key="character.id" class="class">
-          <img style="width:8%" :src="character.imageUrl" alt="character.fullName"  @click="this.$router.push('/tabs/tab2?id='+character.id)">
-        <div class="text-cont">
-          <button @click="this.$router.push('/tabs/tab2?id='+character.id)">{{ character.fullName }}</button>
-        </div>
+    <li v-for="character in daten" v-bind:key="character.id" class="class"
+        @click="this.$router.push('/tabs/characters/'+character.id)">
+      <img style="width:6%" :src="character.imageUrl" alt="character.fullName">
+      <div class="text-cont">
+        {{ character.fullName }}
+      </div>
     </li>
   </ul>
 </template>
@@ -16,36 +17,36 @@ import {useRouter} from "vue-router";
 
 
 export default defineComponent({
-  name: 'NewApiContainer',
-  components: {
-  },
+  name: 'NewApiContainerMaster',
+  components: {},
   setup() {
     const router = useRouter();
-    return { router };
+    return {router};
   },
-  data () {
+  data() {
     axios.get('https://thronesapi.com/api/v2/Characters').then((response) => {
-          //console.log(response.data);
-          this.daten = response.data;
-        })
+      //console.log(response.data);
+      this.daten = response.data;
+    })
         .catch((error) => {
           this.errorMessage = error.message;
           console.error("FEHLER:", error);
         })
-return {
-  daten: [],
-}
+    return {
+      daten: [],
+    }
   },
 });
 </script>
 
 <style>
 .class {
-  width:100%;
-  float:left;
-  display:block;
-  height:200px;
+  width: 100%;
+  float: left;
+  display: block;
+  height: 200px;
 }
+
 .class:hover {
   border: 0px solid #0F0;
 }

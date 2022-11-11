@@ -1,8 +1,17 @@
 <template>
   <div id="container">
     <br>
-    <div id="api"></div>
     <br>
+    Name: {{ daten.fullName }}
+    <br>
+    Title: {{ daten.title }}
+    <br>
+    Family: {{ daten.family }}
+    <br>
+    <img style="width:20%"  :src="daten.imageUrl" alt="character.fullName">
+    <br>
+    <br>
+    <div id="api"></div>
   </div>
 </template>
 
@@ -11,7 +20,7 @@ import {defineComponent} from 'vue';
 import axios from 'axios';
 
 export default defineComponent({
-  name: 'OldApiContainer',
+  name: 'NewApiContainerDetail',
   components: {},
 
   data() {
@@ -20,31 +29,6 @@ export default defineComponent({
       let id = Number(this.$route.params.id);
       //console.log(response.data[id]);
       this.daten = response.data[id];
-
-      let string = JSON.stringify(response.data[id], ["imageUrl"], " ");
-      //console.log(string);
-
-      let api = document.getElementById("api");
-      let node = document.createElement("node");
-
-      let splitted = string.split("imageUrl", 2);
-
-      node.textContent = splitted.toString()
-          .replaceAll(",", "")
-          .replaceAll('"', '')
-          .replaceAll('[', '')
-          .replaceAll('}', '')
-          .replaceAll(']', '')
-          .replaceAll('{', '')
-          .replaceAll(': ', '')
-          .replaceAll('None', ' ')
-          .replaceAll('imageUrl', '')
-      ;
-
-      let text = node.textContent;
-      //console.log(text);
-      let nodeString = '<img style="width:20%" src="' + text + '" alt="Testbild"> '
-      api?.insertAdjacentHTML('beforeend', nodeString);
     })
         .catch((error) => {
           this.errorMessage = error.message;

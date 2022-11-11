@@ -14,8 +14,8 @@
 
       <div id="container">
 
-        <CountButton name="CountButton" />
-        <OldApiContainer name="OldApiContainer" />
+        <CountButton name="CountButton"/>
+        <NewApiContainerDetail name="NewApiContainerDetail"/>
 
       </div>
     </ion-content>
@@ -23,13 +23,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
-import OldApiContainer from '@/components/OldApiContainer.vue';
+import {defineComponent} from 'vue';
+import {IonPage, IonHeader, IonToolbar, IonTitle, IonContent} from '@ionic/vue';
+import NewApiContainerDetail from '@/components/NewApiContainerDetail.vue';
 import CountButton from "@/components/CountButton.vue";
 
 export default defineComponent({
   name: 'Tab2Page',
-  components: {CountButton, OldApiContainer, IonHeader, IonToolbar, IonTitle, IonContent, IonPage }
+  components: {CountButton, NewApiContainerDetail, IonHeader, IonToolbar, IonTitle, IonContent, IonPage}
 });
 </script>

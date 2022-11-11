@@ -13,7 +13,7 @@
       </ion-header>
 
       <div id="container">
-        <NewApiContainer name="NewApiContainer" />
+        <NewApiContainerMaster name="NewApiContainerMaster"/>
 
       </div>
     </ion-content>
@@ -21,13 +21,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
-import NewApiContainer from '@/components/NewApiContainer.vue';
+import {defineComponent} from 'vue';
+import {IonPage, IonHeader, IonToolbar, IonTitle, IonContent} from '@ionic/vue';
+import NewApiContainerMaster from '@/components/NewApiContainerMaster.vue';
 
-export default  defineComponent({
+export default defineComponent({
   name: 'Tab1Page',
-  components: {NewApiContainer, IonHeader, IonToolbar, IonTitle, IonContent, IonPage }
+  components: {NewApiContainerMaster, IonHeader, IonToolbar, IonTitle, IonContent, IonPage}
 });
 
 </script>
