@@ -1,4 +1,11 @@
 <template>
+
+  <div class="hello">
+    <h1>{{ $t('welcome') }}</h1>
+    <p v-html="$t('descr')"></p>
+  </div>
+
+
   <ul class="list-rendering">
     <li v-for="character in daten" v-bind:key="character.id" class="class"
         @click="this.$router.push('/tabs/characters/'+character.id)">
