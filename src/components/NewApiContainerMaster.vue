@@ -6,21 +6,13 @@
   </div>
   <ul class="list-rendering">
 
-    <li v-for="(article,index) in items" v-bind:key="article.entry_id" class="class"
+    <li v-for="(item,index) in items" v-bind:key="index" class="class"
         @click="this.$router.push('/tabs/article/'+article.entry_id)">
-      <img style="width:6%" :src="article" alt="article.entry_id">
+      <img style="width:10%" :src="item.image" alt="item.image">
       <div class="text-cont">
-
-        <strong>{{ article[0].headline }}</strong>
-        <br>
-        {{ article[0].associations[0].renditions[0].url }}
-        <br>
-        <br>
-        {{index}}
+        {{ item.title }}
         <br>
 
-
-        <br>
       </div>
     </li>
   </ul>
@@ -30,7 +22,11 @@
 import {defineComponent} from 'vue';
 import axios from 'axios';
 import {useRouter} from "vue-router";
-
+var apikey = 'd2a79ae546829bf9f16e81bd91a39197';
+var category = 'technology';
+var lang = 'de';
+var url = 'https://gnews.io/api/v4/top-headlines?topic=' + category + '&token=' + apikey + '&lang=' + lang + '&country=de&max=10';
+//url = 'https://gnews.io/api/v4/top-headlines?token=d2a79ae546829bf9f16e81bd91a39197&lang=de';
 
 export default defineComponent({
   name: 'NewApiContainerMaster',
@@ -53,11 +49,9 @@ export default defineComponent({
   mounted() {
       axios.defaults.baseURL = 'https://crossorigin.me/';
       //axios.get('https://digitalwires.dpa-newslab.com/R4M2wrF0jVhO4taWbTnTrszsI6jlrJpt/aufschaltung/au-clfMP2R2QiuFobx1NU/wireq/f-B7mt4LRofskkgXlK/entries.json').then((response) => {
-      axios.get('https://digitalwires.dpa-newslab.com/R4M2wrF0jVhO4taWbTnTrszsI6jlrJpt/aufschaltung/au-clfMP2R2QiuFobx1NU/feed/infoline-vor-24h.json').then((response) => {
-
-        //console.log(response.data.entries[0].associations[0].renditions[0].url);
-        //this.one = response.data.entries[0].associations[0].renditions[0].url;
-        this.items = response.data;
+      //axios.get('https://digitalwires.dpa-newslab.com/R4M2wrF0jVhO4taWbTnTrszsI6jlrJpt/aufschaltung/au-clfMP2R2QiuFobx1NU/feed/infoline-vor-24h.json').then((response) => {
+      axios.get(url).then((response) => {
+        this.items = response.data.articles;
         console.log(response.data);
         console.log(this.items);
         console.log(Object.values(this.items));
