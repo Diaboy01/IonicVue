@@ -4,19 +4,28 @@
     <h1>{{ $t('welcome') }}</h1>
     <p v-html="$t('descr')"></p>
   </div>
-
-
   <ul class="list-rendering">
-    <li v-for="character in daten" v-bind:key="character.id" class="class"
-        @click="this.$router.push('/tabs/characters/'+character.id)">
-      <img style="width:6%" :src="character.imageUrl" alt="character.fullName">
+
+    <li v-for="(article,index) in items" v-bind:key="article.entry_id" class="class"
+        @click="this.$router.push('/tabs/article/'+article.entry_id)">
+      <img style="width:6%" :src="article" alt="article.entry_id">
       <div class="text-cont">
-        {{ character.fullName }}
+
+        <strong>{{ article[0].headline }}</strong>
+        <br>
+        {{ article[0].associations[0].renditions[0].url }}
+        <br>
+        <br>
+        {{index}}
+        <br>
+
+
+        <br>
       </div>
     </li>
   </ul>
 </template>
-
+//{{ article[0].associations[0].renditions[0].url }}
 <script lang="ts">
 import {defineComponent} from 'vue';
 import axios from 'axios';
@@ -31,18 +40,35 @@ export default defineComponent({
     return {router};
   },
   data() {
-    axios.get('https://thronesapi.com/api/v2/Characters').then((response) => {
-      //console.log(response.data);
-      this.daten = response.data;
-    })
-        .catch((error) => {
-          this.errorMessage = error.message;
-          console.error("FEHLER:", error);
-        })
     return {
-      daten: [],
+      items: [],
+      itemCount: 5,
     }
   },
+  computed: {
+    limitedItems() {
+      return this.items.slice(0, this.itemCount);
+    }
+  },
+  mounted() {
+      axios.defaults.baseURL = 'https://crossorigin.me/';
+      //axios.get('https://digitalwires.dpa-newslab.com/R4M2wrF0jVhO4taWbTnTrszsI6jlrJpt/aufschaltung/au-clfMP2R2QiuFobx1NU/wireq/f-B7mt4LRofskkgXlK/entries.json').then((response) => {
+      axios.get('https://digitalwires.dpa-newslab.com/R4M2wrF0jVhO4taWbTnTrszsI6jlrJpt/aufschaltung/au-clfMP2R2QiuFobx1NU/feed/infoline-vor-24h.json').then((response) => {
+
+        //console.log(response.data.entries[0].associations[0].renditions[0].url);
+        //this.one = response.data.entries[0].associations[0].renditions[0].url;
+        this.items = response.data;
+        console.log(response.data);
+        console.log(this.items);
+        console.log(Object.values(this.items));
+        console.log(Array.from(this.items));
+
+      })
+          .catch((error) => {
+            console.error("FEHLER:", error);
+          })
+    },
+
 });
 </script>
 

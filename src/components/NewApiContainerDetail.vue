@@ -26,6 +26,7 @@ export default defineComponent({
   data() {
     axios.get('https://thronesapi.com/api/v2/Characters').then((response) => {
       //console.log(response.data);
+      console.log(response.data.entries[0].associations[0].renditions[0].url);
       let id = Number(this.$route.params.id);
       //console.log(response.data[id]);
       this.daten = response.data[id];
