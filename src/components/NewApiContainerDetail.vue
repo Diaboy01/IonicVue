@@ -1,35 +1,47 @@
 <template>
-  <div id="container">
-    <br>
-    <br>
-    Name: {{ daten.fullName }}
-    <br>
-    Title: {{ daten.title }}
-    <br>
-    Family: {{ daten.family }}
-    <br>
-    <img style="width:20%"  :src="daten.imageUrl" alt="character.fullName">
-    <br>
-    <br>
-    <div id="api"></div>
-  </div>
+
+  <ul class="list-rendering">
+
+    <li v-for="(item, index) in items" v-bind:key="index" class="class"
+        @click="this.$router.push('/tabs/')">
+      <img style="width:10%" :src="item.image" alt="item.image">
+      <div class="text-cont">
+        {{ item.title }}
+        <br>
+
+      </div>
+    </li>
+  </ul>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
 import axios from 'axios';
 
+var apikey = 'da6f8cbb4719063c2ffc6909fe212c21';
+var topic = 'breaking-news';
+var lang = 'de';
+var country = 'de';
+//var max = 3;
+var from = '2021-01-01';
+var to = '2021-01-01';
+var q = 'corona';
+var In = 'title';
+var url = 'https://gnews.io/api/v4/top-headlines?token=' + apikey + '&lang=' + lang + '&country=' + country + '&topic=' + topic + '&q='+q+'&sortby=publishedAt';
+//var url = 'https://gnews.io/api/v4/top-headlines?token=' + apikey + '&lang=' + lang + '&country=' + country + '&topic=' + topic + '&q='+q+'&max='+ max +'&sortby=publishedAt';
+//url = 'https://gnews.io/api/v4/top-headlines?token=d2a79ae546829bf9f16e81bd91a39197&lang=de';
+
+
 export default defineComponent({
   name: 'NewApiContainerDetail',
   components: {},
 
   data() {
-    axios.get('https://thronesapi.com/api/v2/Characters').then((response) => {
-      //console.log(response.data);
-      console.log(response.data.entries[0].associations[0].renditions[0].url);
-      let id = Number(this.$route.params.id);
-      //console.log(response.data[id]);
-      this.daten = response.data[id];
+    var title = this.$route.params.title;
+    axios.get('https://gnews.io/api/v4/top-headlines?token=' + apikey + '&in=title&q="' + title +'"').then((response) => {
+      console.log(response.data.articles);
+      this.items = response.data.articles;
+
     })
         .catch((error) => {
           this.errorMessage = error.message;
@@ -37,10 +49,9 @@ export default defineComponent({
         })
 
     return {
-      daten: [],
+      items: [],
     }
   },
-
 
 });
 </script>

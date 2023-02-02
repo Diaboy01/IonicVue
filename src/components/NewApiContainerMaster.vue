@@ -6,27 +6,42 @@
   </div>
   <ul class="list-rendering">
 
-    <li v-for="(item,index) in items" v-bind:key="index" class="class"
-        @click="this.$router.push('/tabs/article/'+article.entry_id)">
+    <li v-for="(item, index) in items" v-bind:key="index" class="class"
+        @click="this.$router.push('/tabs/article/'+item.title)">
       <img style="width:10%" :src="item.image" alt="item.image">
       <div class="text-cont">
         {{ item.title }}
+        {{ additionalVariable }}
         <br>
 
       </div>
     </li>
   </ul>
 </template>
-//{{ article[0].associations[0].renditions[0].url }}
 <script lang="ts">
 import {defineComponent} from 'vue';
 import axios from 'axios';
 import {useRouter} from "vue-router";
-var apikey = 'd2a79ae546829bf9f16e81bd91a39197';
-var category = 'technology';
+
+
+
+var apikey = 'da6f8cbb4719063c2ffc6909fe212c21';
+var topic = 'breaking-news';
 var lang = 'de';
-var url = 'https://gnews.io/api/v4/top-headlines?topic=' + category + '&token=' + apikey + '&lang=' + lang + '&country=de&max=10';
+var country = 'de';
+//var max = 3;
+var from = '2021-01-01';
+var to = '2021-01-01';
+var q = 'corona';
+var In = 'title';
+var url = 'https://gnews.io/api/v4/top-headlines?token=' + apikey + '&lang=de';
+//var url = 'https://gnews.io/api/v4/top-headlines?token=' + apikey + '&lang=' + lang + '&country=' + country + '&topic=' + topic + '&q='+q+'&sortby=publishedAt';
+//var url = 'https://gnews.io/api/v4/top-headlines?token=' + apikey + '&lang=' + lang + '&country=' + country + '&topic=' + topic + '&q='+q+'&max='+ max +'&sortby=publishedAt';
 //url = 'https://gnews.io/api/v4/top-headlines?token=d2a79ae546829bf9f16e81bd91a39197&lang=de';
+
+
+
+
 
 export default defineComponent({
   name: 'NewApiContainerMaster',
@@ -38,20 +53,17 @@ export default defineComponent({
   data() {
     return {
       items: [],
-      itemCount: 5,
-    }
-  },
-  computed: {
-    limitedItems() {
-      return this.items.slice(0, this.itemCount);
+      additionalVariable: lang
     }
   },
   mounted() {
       axios.defaults.baseURL = 'https://crossorigin.me/';
-      //axios.get('https://digitalwires.dpa-newslab.com/R4M2wrF0jVhO4taWbTnTrszsI6jlrJpt/aufschaltung/au-clfMP2R2QiuFobx1NU/wireq/f-B7mt4LRofskkgXlK/entries.json').then((response) => {
-      //axios.get('https://digitalwires.dpa-newslab.com/R4M2wrF0jVhO4taWbTnTrszsI6jlrJpt/aufschaltung/au-clfMP2R2QiuFobx1NU/feed/infoline-vor-24h.json').then((response) => {
       axios.get(url).then((response) => {
+
         this.items = response.data.articles;
+
+        console.log("Test");
+
         console.log(response.data);
         console.log(this.items);
         console.log(Object.values(this.items));
