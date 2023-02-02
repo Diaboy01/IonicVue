@@ -2,7 +2,7 @@
 
   <ul class="list-rendering">
 
-    <li v-for="(item, index) in items" v-bind:key="index" class="class"
+    <li v-for="(item, index) in items" v-bind:key="index" class="list"
         @click="this.$router.push('/tabs/')">
       <img style="width:10%" :src="item.image" alt="item.image">
       <div class="text-cont">
@@ -18,7 +18,7 @@
 import {defineComponent} from 'vue';
 import axios from 'axios';
 
-var apikey = 'da6f8cbb4719063c2ffc6909fe212c21';
+var apikey = '8714ac4a0acc0130f2a1fc8aa008f407';
 var topic = 'breaking-news';
 var lang = 'de';
 var country = 'de';
@@ -37,26 +37,35 @@ export default defineComponent({
   components: {},
 
   data() {
-    var title = this.$route.params.title;
-    axios.get('https://gnews.io/api/v4/top-headlines?token=' + apikey + '&in=title&q="' + title +'"').then((response) => {
-      console.log(response.data.articles);
+    let title = JSON.stringify(this.$route.params.title);
+    let cleanTitle = title.replaceAll('"', '')
+    axios.get('https://gnews.io/api/v4/top-headlines?token=' + apikey + '&in=title&q="' + cleanTitle +'"').then((response) => {
       this.items = response.data.articles;
-
     })
         .catch((error) => {
           this.errorMessage = error.message;
           console.error("FEHLER:", error);
         })
-
     return {
       items: [],
     }
   },
-
 });
 </script>
 
-<style scoped>
+<style>
+
+.list {
+  width: 100%;
+  float: left;
+  display: block;
+  height: 200px;
+}
+
+.list:hover {
+  border: 0px solid #0F0;
+}
+
 #container {
   text-align: center;
   position: absolute;

@@ -14,7 +14,6 @@
 
       <div id="container">
 
-        <CountButton name="CountButton"/>
         <NewApiContainerDetail name="NewApiContainerDetail"/>
 
       </div>
@@ -30,6 +29,6 @@ import CountButton from "@/components/CountButton.vue";
 
 export default defineComponent({
   name: 'Tab2Page',
-  components: {CountButton, NewApiContainerDetail, IonHeader, IonToolbar, IonTitle, IonContent, IonPage}
+  components: {NewApiContainerDetail, IonHeader, IonToolbar, IonTitle, IonContent, IonPage}
 });
 </script>
