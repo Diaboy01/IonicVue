@@ -1,49 +1,88 @@
 <template>
 
-  <button @click='fetchData(url)'>STARTEN</button>
-  <button @click='pushLog("lul")'>LEL</button>
+  <ion-menu content-id="main-content" side="end" class="menu">
+    <ion-header>
 
-  <ion-list>
-    <ion-item>
-      <ion-select
-          placeholder="Select fruit"
-          @ionDismiss="pushLog($event)"
-          @ionCancel="fetchData(url + '&lang=' + currentFood)"
-      >
-        <ion-select-option value="de">Deutsch</ion-select-option>
-        <ion-select-option value="en">English</ion-select-option>
-        <ion-select-option value="bananas">Bananas</ion-select-option>
+      <ion-toolbar>
+        <ion-title>Menu Content</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">This is the menu content.
+      <br>
+      <br>
+      Sprache: {{ currentFood }}
+      <br>
+      <ion-list>
+        <ion-item>
+          <ion-select
+              placeholder="Sprache ändern"
+              @ionDismiss="pushLog($event)"
+              @ionCancel="fetchData(url + '&lang=' + currentFood)"
+          >
+            <ion-select-option value="de">Deutsch</ion-select-option>
+            <ion-select-option value="en">English</ion-select-option>
+            <ion-select-option value="bananas">Bananas</ion-select-option>
 
-      </ion-select>
-    </ion-item>
-  </ion-list>
+          </ion-select>
+        </ion-item>
+      </ion-list>
 
-  Current value: {{ currentFood }}
+    </ion-content>
+  </ion-menu>
+  <ion-page id="main-content">
+    <ion-header>
+    </ion-header>
+    <ion-content class="ion-padding">
 
-  <div class="hello">
-    <h1>{{ $t('welcome') }}</h1>
-    <p v-html="$t('descr')"></p>
-  </div>
-  <br>
-
-  <ul class="list-rendering">
-    <li v-for="(item, index) in items" v-bind:key="index" class="list"
-        @click="this.$router.push('/tabs/article/'+item.title)">
-      <img style="width:10%" :src="item.image" alt="item.image">
-      <div class="text-cont">
-        {{ item.title }}
-        <br>
+      <div class="hello">
+        <h1>{{ $t('welcome') }}</h1>
+        <p v-html="$t('descr')"></p>
       </div>
-    </li>
-  </ul>
-  <br>
+
+      <br>
+      <button @click='fetchData(url)'>STARTEN</button>
+      <br>
+
+      <br>
+
+      <ion-menu-toggle>
+        <ion-button>Click to open the menu</ion-button>
+        <ion-img style="width: 10%; height: 10%" src="https://www.clipartmax.com/png/middle/303-3030683_home-menu-icon-in-red.png" alt=""></ion-img>
+      </ion-menu-toggle>
+
+      <ul class="list-rendering">
+        <li v-for="(item, index) in items" v-bind:key="index" class="list"
+            @click="this.$router.push('/tabs/article/'+item.title)">
+          <img style="width:10%" :src="item.image" alt="item.image">
+          <div class="text-cont">
+            {{ item.title }}
+            <br>
+            <br>
+          </div>
+        </li>
+      </ul>
+
+
+    </ion-content>
+  </ion-page>
 
 
 </template>
+
+
+
+
 <script lang="ts">
 import {defineComponent} from 'vue';
 import axios from 'axios';
 import {useRouter} from "vue-router";
+import {
+  IonContent,
+  IonHeader,
+  IonPage,
+  IonTitle,
+  IonToolbar} from '@ionic/vue';
+
 
 var apikey = '8714ac4a0acc0130f2a1fc8aa008f407';
 var topic = 'breaking-news';
@@ -63,7 +102,13 @@ var Test = 'Test';
 
 export default defineComponent({
   name: 'NewApiContainerMaster',
-  components: {},
+  components: {
+    IonContent,
+    IonHeader,
+    IonPage,
+    IonTitle,
+    IonToolbar
+  },
   setup() {
     const router = useRouter();
     return {router};
@@ -96,36 +141,16 @@ export default defineComponent({
 </script>
 
 <style>
+
 .list {
-  width: 100%;
-  float: left;
   display: block;
-  height: 200px;
-}
 
-.list:hover {
-  border: 0px solid #0F0;
-}
-
+};
 #container {
   text-align: center;
   position: absolute;
   left: 0;
   right: 0;
+};
 
-}
-
-#container strong {
-  font-size: 20px;
-}
-
-#container p {
-  font-size: 16px;
-  color: #8c8c8c;
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
-}
 </style>

@@ -8,6 +8,8 @@
       <div class="text-cont">
         {{ item.title }}
         <br>
+        <br>
+        {{ item.content }}
 
       </div>
     </li>
@@ -56,35 +58,16 @@ export default defineComponent({
 <style>
 
 .list {
-  width: 100%;
-  float: left;
   display: block;
-  height: 200px;
 }
 
-.list:hover {
-  border: 0px solid #0F0;
-}
 
 #container {
   text-align: center;
   position: absolute;
   left: 0;
   right: 0;
-  top: 10%;
 }
 
-#container strong {
-  font-size: 20px;
-}
 
-#container p {
-  font-size: 16px;
-  color: #8c8c8c;
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
-}
 </style>
