@@ -36,7 +36,7 @@
 
       <div class="hello">
         <h1>{{ $t('welcome') }}</h1>
-        <p v-html="$t('descr')"></p>
+        <h2> {{ $t('test') }} </h2>
       </div>
 
       <br>

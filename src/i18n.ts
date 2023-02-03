@@ -3,31 +3,29 @@ import I18NextVue from 'i18next-vue'
 import LanguageDetector from 'i18next-browser-languagedetector'
 
 i18next
-    // detect user language
-    // learn more: https://github.com/i18next/i18next-browser-languageDetector
     .use(LanguageDetector)
-    // init i18next
-    // for all options read: https://www.i18next.com/overview/configuration-options
     .init({
-        debug: true,
-        fallbackLng: 'en',
+        debug: true, //TODO siehe 1 runter
+        fallbackLng: 'de', // ?lng=de
+        detection: {
+            order: ['querystring', 'navigator', 'cookie', 'localStorage', 'htmlTag', 'path', 'subdomain'],
+            lookupQuerystring: 'lng',
+            lookupCookie: 'i18next',
+            lookupLocalStorage: 'i18nextLng',
+            lookupFromPathIndex: 0,
+            lookupFromSubdomainIndex: 0,
+        },
         resources: {
             en: {
                 translation: {
+                    test: 'Welcome',
                     welcome: 'Welcome to Your Vue.js App',
-                    descr: 'For a guide and recipes on how to configure / customize '
-                        + 'this project,<br>check out the '
-                        + '<a href="https://cli.vuejs.org" target="_blank" '
-                        + 'rel="noopener">vue-cli documentation</a>.'
                 }
             },
             de: {
                 translation: {
+                    test: 'Willkommen',
                     welcome: 'Willkommen zu Deiner Vue.js App',
-                    descr: 'Eine Anleitung und Rezepte zum Konfigurieren/Anpassen '
-                        + 'dieses Projekts findest du<br>in der '
-                        + '<a href="https://cli.vuejs.org" target="_blank" '
-                        + 'rel="noopener">vue-cli-Dokumentation</a>.'
                 }
             }
         }
