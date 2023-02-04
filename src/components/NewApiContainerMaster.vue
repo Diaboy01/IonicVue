@@ -34,11 +34,12 @@
     </ion-header>
     <ion-content class="ion-padding">
 
+      <br>
       <div class="hello">
         <h1>{{ $t('welcome') }}</h1>
         <h2> {{ $t('test') }} </h2>
       </div>
-
+      <br>
       <br>
       <button @click='fetchData(url)'>STARTEN</button>
       <br>
@@ -82,6 +83,8 @@ import {
   IonPage,
   IonTitle,
   IonToolbar} from '@ionic/vue';
+
+
 
 
 var apikey = '8714ac4a0acc0130f2a1fc8aa008f407';

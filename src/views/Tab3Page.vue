@@ -13,6 +13,9 @@
       </ion-header>
 
       <BasicView name="Tab 3 page"/>
+
+      <LoginView name = "LoginView"/>
+
     </ion-content>
   </ion-page>
 </template>
@@ -21,9 +24,10 @@
 import {defineComponent} from 'vue';
 import {IonPage, IonHeader, IonToolbar, IonTitle, IonContent} from '@ionic/vue';
 import BasicView from '@/components/BasicView.vue';
+import LoginView from "@/components/LoginView.vue";
 
 export default defineComponent({
   name: 'Tab3Page',
-  components: {BasicView, IonHeader, IonToolbar, IonTitle, IonContent, IonPage}
+  components: {LoginView, BasicView, IonHeader, IonToolbar, IonTitle, IonContent, IonPage}
 });
 </script>
