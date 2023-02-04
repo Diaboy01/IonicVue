@@ -87,20 +87,20 @@ import {
 
 
 
-var apikey = '8714ac4a0acc0130f2a1fc8aa008f407';
-var topic = 'breaking-news';
-var lang = 'de';
-var country = 'de';
-//var max = 3;
-var from = '2021-01-01';
-var to = '2021-01-01';
-var q = 'corona';
-var In = 'title';
-var url = 'https://gnews.io/api/v4/top-headlines?token=' + apikey;
+const apikey = '8714ac4a0acc0130f2a1fc8aa008f407';
+const topic = 'breaking-news';
+const lang = 'de';
+const country = 'de';
+//const max = 3;
+const from = '2021-01-01';
+const to = '2021-01-01';
+const q = 'corona';
+const In = 'title';
+const url = 'https://gnews.io/api/v4/top-headlines?token=' + apikey;
 //var url = 'https://gnews.io/api/v4/top-headlines?token=' + apikey + '&lang=' + lang + '&country=' + country + '&topic=' + topic + '&q='+q+'&sortby=publishedAt';
 //var url = 'https://gnews.io/api/v4/top-headlines?token=' + apikey + '&lang=' + lang + '&country=' + country + '&topic=' + topic + '&q='+q+'&max='+ max +'&sortby=publishedAt';
 //url = 'https://gnews.io/api/v4/top-headlines?token=d2a79ae546829bf9f16e81bd91a39197&lang=de';
-var Test = 'Test';
+const Test = 'Test';
 
 
 export default defineComponent({

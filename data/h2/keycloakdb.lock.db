@@ -1,6 +1,6 @@
 #FileLock
-#Sat Feb 04 14:22:06 CET 2023
-server=192.168.2.130\:51490
+#Sat Feb 04 17:40:41 CET 2023
+server=192.168.2.130\:58389
 hostName=DESKTOP-Win10.speedport.ip
 method=file
-id=1861c975b5d85036c2c1c4655870f956d92492c89c2
+id=1861d4d29a4367e22b03bbdb03ecdbe771daff9b39c
