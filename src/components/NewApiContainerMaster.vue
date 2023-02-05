@@ -10,14 +10,14 @@
     <ion-content class="ion-padding">Menu content:
       <br>
       <br>
-      Sprache: {{ lang }}
+      {{ lang }} | {{ $t('changeLanguage') }}:
       <br>
       <ion-list>
         <ion-item>
           <ion-select
-              placeholder="Sprache ändern"
+              interface="popover"
               @ionDismiss="changeLang($event);"
-              @ionCancel="changeLang($event);"
+              @ionCancel="cancel();"
           >
             <ion-select-option value="de">Deutsch</ion-select-option>
             <ion-select-option value="en">English</ion-select-option>
@@ -40,22 +40,11 @@
 
       </ion-menu-toggle>
 
-      <br>
-      <br>
-      <br>
-      <br>
-        <br>
-        <h1>{{ $t('welcome') }}</h1>
-      <ion-button color="primary" @click="fetchData(url + '&lang=' + lang)"> {{ $t('test') }} </ion-button>
-      <br>
-      <br>
-      <br>
 
-      <br>
 
       <ul class="list-rendering">
         <li v-for="(item, index) in items" v-bind:key="index" class="list"
-            @click="this.$router.push('/tabs/article/'+item.title)">
+            @click="this.$router.push('/pages/article/'+item.title)">
           <h2> {{ item.title }} </h2>
           <br>
           <br>
@@ -87,8 +76,7 @@ import {
   IonPage,
   IonTitle,
   IonToolbar} from '@ionic/vue';
-
-
+import i18next from 'i18next';
 
 
 const topic = 'breaking-news';
@@ -102,14 +90,13 @@ const to = '2021-01-01';
 const q = 'corona';
 const In = 'title';
 
-const apikey = '8714ac4a0acc0130f2a1fc8aa008f407';
+const apikey = 'd2a79ae546829bf9f16e81bd91a39197';
 
 const url = 'https://gnews.io/api/v4/top-headlines?token=' + apikey;
 
 //  'https://gnews.io/api/v4/top-headlines?token=' + apikey + '&lang=' + lang + '&country=' + country + '&topic=' + topic + '&q='+q+'&sortby=publishedAt';
 //  'https://gnews.io/api/v4/top-headlines?token=' + apikey + '&lang=' + lang + '&country=' + country + '&topic=' + topic + '&q='+q+'&max='+ max +'&sortby=publishedAt';
 //  'https://gnews.io/api/v4/top-headlines?token=d2a79ae546829bf9f16e81bd91a39197&lang=de';
-
 
 
 export default defineComponent({
@@ -122,9 +109,18 @@ export default defineComponent({
     IonToolbar
   },
   created() {
-    let params = new URLSearchParams('lng');
-    let lang = params.get('lng');
-    //this.fetchData(url + '&lang=' + lang);
+    let params = new URLSearchParams('lang');
+    let lang = params.get('lang');
+    lang =  i18next.language;
+    params.set('lang', lang);
+
+    if (lang == null || lang == undefined) {
+
+      var href = new URL('window.location.href');
+      href.search = '';
+      window.location.reload();
+    }
+    this.fetchData(url + '&lang=' + lang);
   },
   setup() {
     const router = useRouter();
@@ -133,18 +129,21 @@ export default defineComponent({
   data() {
     return {
       items: [],
-      lang: "?",
+      lang: i18next.language,
       url: url,
     }
   },
   methods: {
     changeLang(event: any) {
-      let selectedValue = event.target.value;
-      let newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?lng=' + selectedValue;
+      let selectedLang = event.target.value;
+      let newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?lang=' + selectedLang;
       window.history.pushState({path:newurl},'',newurl);
-      this.fetchData(url + '&lang=' + lang);
-      //window.location.reload();
-      return this.lang = selectedValue;
+      //this.fetchData(url + '&lang=' + selectedLang);
+      window.location.reload();
+      return this.lang = selectedLang;
+    },
+    cancel(event: any) {
+      window.location.reload();
     },
     async fetchData(url: string) {
       try {

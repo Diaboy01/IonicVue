@@ -5,28 +5,29 @@ import LanguageDetector from 'i18next-browser-languagedetector'
 i18next
     .use(LanguageDetector)
     .init({
-        debug: true, //TODO siehe 1 runter
-        fallbackLng: 'de', // ?lng=de
+        debug: true,
+        fallbackLng: 'de', // ?lang=de
         detection: {
             order: ['querystring', 'navigator', 'cookie', 'localStorage', 'htmlTag', 'path', 'subdomain'],
-            lookupQuerystring: 'lng',
+            lookupQuerystring: 'lang',
             lookupCookie: 'i18next',
             lookupLocalStorage: 'i18nextLng',
             lookupFromPathIndex: 0,
             lookupFromSubdomainIndex: 0,
         },
         resources: {
-            en: {
-                translation: {
-                    test: 'eng',
-                    welcome: 'Welcome to Your Vue.js App',
-                }
-            },
             de: {
                 translation: {
-                    test: 'de',
-                    welcome: 'Willkommen zu Deiner Vue.js App',
+                    language: 'Deutsch',
+                    changeLanguage: 'Sprache ändern',
+                },
+            en: {
+                translation: {
+                    language: 'English',
+                    changeLanguage: 'Change language',
                 }
+            }
+
             }
         }
     });

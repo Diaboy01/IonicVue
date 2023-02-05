@@ -3,7 +3,7 @@
   <ul class="list-rendering">
 
     <li v-for="(item, index) in items" v-bind:key="index" class="list"
-        @click="this.$router.push('/tabs/')">
+        @click="this.$router.push('/pages/')">
       <img style="width:10%" :src="item.image" alt="item.image">
       <div class="text-cont">
         {{ item.title }}
@@ -20,7 +20,7 @@
 import {defineComponent} from 'vue';
 import axios from 'axios';
 
-var apikey = '8714ac4a0acc0130f2a1fc8aa008f407';
+var apikey = 'd2a79ae546829bf9f16e81bd91a39197';
 var topic = 'breaking-news';
 var lang = 'de';
 var country = 'de';
