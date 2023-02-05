@@ -121,6 +121,11 @@ export default defineComponent({
     IonTitle,
     IonToolbar
   },
+  created() {
+    let params = new URLSearchParams('lng');
+    let lang = params.get('lng');
+    //this.fetchData(url + '&lang=' + lang);
+  },
   setup() {
     const router = useRouter();
     return {router};
@@ -137,7 +142,8 @@ export default defineComponent({
       let selectedValue = event.target.value;
       let newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?lng=' + selectedValue;
       window.history.pushState({path:newurl},'',newurl);
-      window.location.reload();
+      this.fetchData(url + '&lang=' + lang);
+      //window.location.reload();
       return this.lang = selectedValue;
     },
     async fetchData(url: string) {
