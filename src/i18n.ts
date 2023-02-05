@@ -18,13 +18,13 @@ i18next
         resources: {
             en: {
                 translation: {
-                    test: 'Welcome',
+                    test: 'eng',
                     welcome: 'Welcome to Your Vue.js App',
                 }
             },
             de: {
                 translation: {
-                    test: 'Willkommen',
+                    test: 'de',
                     welcome: 'Willkommen zu Deiner Vue.js App',
                 }
             }

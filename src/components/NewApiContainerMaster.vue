@@ -4,24 +4,24 @@
     <ion-header>
 
       <ion-toolbar>
-        <ion-title>Menu Content</ion-title>
+        <ion-title><ion-menu-toggle><ion-img style="height: 20%; width: 20%; display: block; margin: 0 auto;" src="https://assets.stickpng.com/images/588a64e0d06f6719692a2d10.png" alt=""></ion-img></ion-menu-toggle></ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-content class="ion-padding">This is the menu content.
+    <ion-content class="ion-padding">Menu content:
       <br>
       <br>
-      Sprache: {{ currentFood }}
+      Sprache: {{ lang }}
       <br>
       <ion-list>
         <ion-item>
           <ion-select
               placeholder="Sprache ändern"
-              @ionDismiss="pushLog($event)"
-              @ionCancel="fetchData(url + '&lang=' + currentFood)"
+              @ionDismiss="changeLang($event);"
+              @ionCancel="changeLang($event);"
           >
             <ion-select-option value="de">Deutsch</ion-select-option>
             <ion-select-option value="en">English</ion-select-option>
-            <ion-select-option value="bananas">Bananas</ion-select-option>
+            <ion-select-option value="nix">nix</ion-select-option>
 
           </ion-select>
         </ion-item>
@@ -33,38 +33,42 @@
     <ion-header>
     </ion-header>
     <ion-content class="ion-padding">
-
       <br>
-      <div class="hello">
-        <h1>{{ $t('welcome') }}</h1>
-        <h2> {{ $t('test') }} </h2>
-      </div>
-      <br>
-      <br>
-      <button @click='fetchData(url)'>STARTEN</button>
-      <br>
-
-      <br>
-
       <ion-menu-toggle>
-        <ion-button>Click to open the menu</ion-button>
-        <ion-img style="width: 10%; height: 10%" src="https://www.clipartmax.com/png/middle/303-3030683_home-menu-icon-in-red.png" alt=""></ion-img>
+
+        <ion-img class="menu-icon" src="https://assets.stickpng.com/images/588a64e0d06f6719692a2d10.png" alt=""></ion-img>
+
       </ion-menu-toggle>
+
+      <br>
+      <br>
+      <br>
+      <br>
+        <br>
+        <h1>{{ $t('welcome') }}</h1>
+      <ion-button color="primary" @click="fetchData(url + '&lang=' + lang)"> {{ $t('test') }} </ion-button>
+      <br>
+      <br>
+      <br>
+
+      <br>
 
       <ul class="list-rendering">
         <li v-for="(item, index) in items" v-bind:key="index" class="list"
             @click="this.$router.push('/tabs/article/'+item.title)">
-          <img style="width:10%" :src="item.image" alt="item.image">
+          <h2> {{ item.title }} </h2>
+          <br>
+          <br>
+          <img style="width: 50%; height: 50%" :src="item.image" alt="item.image">
           <div class="text-cont">
-            {{ item.title }}
-            <br>
-            <br>
+            <h3> - {{ item.source.name }} </h3>
           </div>
         </li>
       </ul>
 
 
     </ion-content>
+
   </ion-page>
 
 
@@ -87,20 +91,25 @@ import {
 
 
 
-const apikey = '8714ac4a0acc0130f2a1fc8aa008f407';
 const topic = 'breaking-news';
 const lang = 'de';
 const country = 'de';
+
+
 //const max = 3;
 const from = '2021-01-01';
 const to = '2021-01-01';
 const q = 'corona';
 const In = 'title';
+
+const apikey = '8714ac4a0acc0130f2a1fc8aa008f407';
+
 const url = 'https://gnews.io/api/v4/top-headlines?token=' + apikey;
-//var url = 'https://gnews.io/api/v4/top-headlines?token=' + apikey + '&lang=' + lang + '&country=' + country + '&topic=' + topic + '&q='+q+'&sortby=publishedAt';
-//var url = 'https://gnews.io/api/v4/top-headlines?token=' + apikey + '&lang=' + lang + '&country=' + country + '&topic=' + topic + '&q='+q+'&max='+ max +'&sortby=publishedAt';
-//url = 'https://gnews.io/api/v4/top-headlines?token=d2a79ae546829bf9f16e81bd91a39197&lang=de';
-const Test = 'Test';
+
+//  'https://gnews.io/api/v4/top-headlines?token=' + apikey + '&lang=' + lang + '&country=' + country + '&topic=' + topic + '&q='+q+'&sortby=publishedAt';
+//  'https://gnews.io/api/v4/top-headlines?token=' + apikey + '&lang=' + lang + '&country=' + country + '&topic=' + topic + '&q='+q+'&max='+ max +'&sortby=publishedAt';
+//  'https://gnews.io/api/v4/top-headlines?token=d2a79ae546829bf9f16e81bd91a39197&lang=de';
+
 
 
 export default defineComponent({
@@ -119,21 +128,22 @@ export default defineComponent({
   data() {
     return {
       items: [],
-      currentFood: "test",
-      url: url, //funktioniert nicht so wie man denkt
+      lang: "?",
+      url: url,
     }
   },
   methods: {
-    pushLog(event: any) {
+    changeLang(event: any) {
       let selectedValue = event.target.value;
-      console.log(selectedValue);
-      return this.currentFood = selectedValue;
+      let newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?lng=' + selectedValue;
+      window.history.pushState({path:newurl},'',newurl);
+      window.location.reload();
+      return this.lang = selectedValue;
     },
     async fetchData(url: string) {
       try {
         const response = await axios.get(url);
         this.items = response.data.articles;
-        console.log(this.items);
       } catch (error) {
         console.error(error);
       }
@@ -145,15 +155,36 @@ export default defineComponent({
 
 <style>
 
-.list {
-  display: block;
+.menu-icon {
+  width: 10%;
+  height: 10%;
+  float: right;
 
-};
-#container {
+}
+
+.list {
+  width: 100%;
+  height: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  color: #fff;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: block;
+  align-items: center;
+  align-content: center;
   text-align: center;
-  position: absolute;
-  left: 0;
-  right: 0;
-};
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+
+ion-page {
+  background-color: transparent;
+}
 
 </style>
