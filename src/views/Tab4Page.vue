@@ -18,7 +18,6 @@
 
       </div>
 
-
     </ion-content>
   </ion-page>
 </template>
