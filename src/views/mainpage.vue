@@ -25,7 +25,6 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import NewApiContainerMaster from '@/components/NewApiContainerMaster.vue';
-import MainMenu from '@/components/MainMenu.vue';
 
 export default defineComponent({
   name: 'Tab1Page',
