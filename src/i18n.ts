@@ -22,21 +22,25 @@ i18next
                     settings: 'Einstellungen - Nachrichten Filter',
                     changeLanguage: 'Sprache ändern',
                     changeCountry: 'Land ändern',
+                    changeTopic: 'Thema ändern',
                 }
-                },
+            },
             en: {
                 translation: {
                     language: 'English (United States)',
                     settings: 'Settings - News Filter',
                     changeLanguage: 'Change language',
                     changeCountry: 'Change country',
+                    changeTopic: 'Change topic',
                 },
+            },
             es: {
                 translation: {
                     language: 'Español (España)',
                     settings: 'Ajustes - Filtro de noticias',
                     changeLanguage: 'Cambiar idioma',
                     changeCountry: 'Cambiar país',
+                    changeTopic: 'Cambiar tema',
                 }
             },
             fr: {
@@ -45,10 +49,21 @@ i18next
                     settings: 'Paramètres - Filtre de nouvelles',
                     changeLanguage: 'Changer de langue',
                     changeCountry: 'Changer de pays',
+                    changeTopic: 'Changer de sujet',
+                }
+            },
+            ru: {
+                translation: {
+                    language: 'Русский (Россия)',
+                    settings: 'Настройки - Фильтр новостей',
+                    changeLanguage: 'Изменить язык',
+                    changeCountry: 'Изменить страну',
+                    changeTopic: 'Изменить тему',
+
                 }
             }
 
-            }
+
         }
     });
 

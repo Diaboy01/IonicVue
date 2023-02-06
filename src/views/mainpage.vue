@@ -15,11 +15,7 @@
 
       </div>
 
-
-      <div class="embed-container">
-        <iframe src="https://static.videezy.com/system/resources/previews/000/051/385/original/Dark_World_Map_Animate_Background.mp4" id="iframe" style="border: none;" frameborder="0" allowfullscreen scrolling="no" allow="autoplay" encrypted-media> </iframe>
-      </div>
-
+     <img src="http://45.81.234.92/worldnews.gif" id="background-container" alt="">
 
     </ion-content>
   </ion-page>
@@ -58,16 +54,16 @@ export default defineComponent({
 ion-page {
   background-color: transparent;
 }
-.embed-container iframe {
+#background-container{
+  background-size: cover;
   top: 0;
   left: 0;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
+  width: 100%;
+  height: 100%;
   position: absolute;
   background-color: black;
   z-index: -4;
+
 }
 
 </style>
