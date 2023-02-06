@@ -71,6 +71,15 @@ i18next
                     changeTopic: '改变主题',
 
                 }
+            },
+            it: {
+                translation: {
+                    language: 'Italiano (Italia)',
+                    settings: 'Impostazioni - Filtro notizie',
+                    changeLanguage: 'Cambia lingua',
+                    changeCountry: 'Cambia nazione',
+                    changeTopic: 'Cambia argomento',
+                }
             }
 
 
