@@ -6,7 +6,7 @@ i18next
     .use(LanguageDetector)
     .init({
         debug: true,
-        fallbackLng: 'de', // ?lang=de
+        fallbackLng: 'en', // ?lang=de
         detection: {
             order: ['querystring', 'navigator', 'cookie', 'localStorage', 'htmlTag', 'path', 'subdomain'],
             lookupQuerystring: 'lang',
@@ -18,13 +18,33 @@ i18next
         resources: {
             de: {
                 translation: {
-                    language: 'Deutsch',
+                    language: 'Deutsch (Deutschland)',
+                    settings: 'Einstellungen - Nachrichten Filter',
                     changeLanguage: 'Sprache ändern',
+                    changeCountry: 'Land ändern',
+                }
                 },
             en: {
                 translation: {
-                    language: 'English',
+                    language: 'English (United States)',
+                    settings: 'Settings - News Filter',
                     changeLanguage: 'Change language',
+                    changeCountry: 'Change country',
+                },
+            es: {
+                translation: {
+                    language: 'Español (España)',
+                    settings: 'Ajustes - Filtro de noticias',
+                    changeLanguage: 'Cambiar idioma',
+                    changeCountry: 'Cambiar país',
+                }
+            },
+            fr: {
+                translation: {
+                    language: 'Français (France)',
+                    settings: 'Paramètres - Filtre de nouvelles',
+                    changeLanguage: 'Changer de langue',
+                    changeCountry: 'Changer de pays',
                 }
             }
 
