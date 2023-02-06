@@ -25,7 +25,7 @@ export default defineComponent({
   },
   setup() {
     let initOptions = {
-      url: 'http://localhost:8080/', realm: 'myrealm', clientId: 'Nutzer'
+      url: 'http://localhost:8080/', realm: 'myrealm', clientId: 'myclient'
     }
     let keycloak = Keycloak(initOptions);
 
