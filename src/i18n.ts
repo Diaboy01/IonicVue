@@ -61,6 +61,16 @@ i18next
                     changeTopic: 'Изменить тему',
 
                 }
+            },
+            cn: {
+                translation: {
+                    language: '中文 (中国)',
+                    settings: '设置 - 新闻过滤器',
+                    changeLanguage: '改变语言',
+                    changeCountry: '改变国家',
+                    changeTopic: '改变主题',
+
+                }
             }
 
 
