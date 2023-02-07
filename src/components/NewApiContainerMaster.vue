@@ -88,6 +88,8 @@
     </ion-header>
     <ion-content class="ion-padding">
       <br>
+      <img src="http://45.81.234.92/FlashNews24Logo.png" class="logo-icon">
+      <br>
       <ion-menu-toggle>
         <ion-icon :icon="settingsOutline" size="large" class="menu-icon"  ></ion-icon>
 
@@ -249,6 +251,7 @@ export default defineComponent({
   height: 10%;
   float: right;
   position: sticky;
+  cursor: pointer;
 }
 
 .list {
@@ -266,8 +269,12 @@ export default defineComponent({
   z-index: 10;
   overflow-y: scroll;
 }
-
-
+.logo-icon {
+  width: 10%;
+  height: 20%;
+  float: left;
+  position: sticky;
+}
 ion-page {
   background-color: transparent;
 }

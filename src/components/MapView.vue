@@ -1,12 +1,15 @@
 <template>
 
-  <div class="mapouter"><div class="gmap_canvas">
+  <br>
+  <br>
+  <br>
+  <br>
 
-    <iframe width="600" height="500" id="gmap_canvas"
-            src="https://maps.google.com/maps?q=Berlin%20Zoo&t=k&z=13&ie=UTF8&iwloc=&output=embed"
+    <iframe class="map"
+            src="https://maps.google.com/maps?q=Berlin&t=k&z=13&ie=UTF8&iwloc=&output=embed"
             frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
     </iframe>
-  </div></div>
+
 
   <br>
     <button @click="count++"> {{ count }}</button>
@@ -14,34 +17,44 @@
 
 <script>
 import {defineComponent} from 'vue';
+import axios from 'axios';
 
 export default defineComponent({
   name: 'MapView',
   components: {  },
-  data() {
-    return {
-      count: 0
+data() {
+  axios.get('https://geolocation-db.com/json/', {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
+    proxy: {
+      host: '104.236.174.88',
+      port: 3128
     }
+  }).then((response) => {
+    this.items = response.data;
+    console.log(response.data);
+  })
+      .catch((error) => {
+        this.errorMessage = error.message;
+        console.error("FEHLER:", error);
+      })
+  return {
+    items: [],
+    count: 0,
+    search: '',
   }
+},
 });
 </script>
 
 <style>
-.gmap_canvas {
-  overflow: hidden;
-  background: none!important;
-  height: 500px;
-  width: 600px;
-}
-.mapouter {
-  position: relative;
-  text-align: right;
-  height: 500px;
-  width: 600px;
-}
-.iframe {
-  width:100%;
-  height:100%;
+.map {
+  width:40%;
+  height:40%;
+  z-index: 1;
+  cursor: pointer;
+  z-index: 10;
 }
 
 </style>
