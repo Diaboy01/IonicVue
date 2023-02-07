@@ -62,7 +62,7 @@ i18next
 
                 }
             },
-            cn: {
+            zh: {
                 translation: {
                     language: '中文 (中国)',
                     settings: '设置 - 新闻过滤器',

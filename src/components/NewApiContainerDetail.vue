@@ -4,7 +4,7 @@
 
     <li v-for="(item, index) in items" v-bind:key="index" class="list"
         @click="this.$router.push('/pages/')">
-      <img style="width: 80%; height: 80%" :src="item.image" alt="item.image">
+      <img style="width:10%" :src="item.image" alt="item.image">
       <div class="text-cont">
         {{ item.title }}
         <br>
@@ -58,23 +58,16 @@ export default defineComponent({
 <style>
 
 .list {
-  width: 100%;
-  height: 100%;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  color: #fff;
-  font-family: "Comic Sans MS", cursive, sans-serif;
-  background-color: rgba(0, 0, 0, 0.2);
   display: block;
-  align-items: center;
-  align-content: center;
-  text-align: center;
-  cursor: pointer;
-  z-index: 10;
-  overflow-y: scroll;
 }
 
 
-
+#container {
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
 
 
 </style>

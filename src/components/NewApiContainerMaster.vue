@@ -42,18 +42,12 @@
           >
             <ion-select-option value="de">German</ion-select-option>
             <ion-select-option value="en">English</ion-select-option>
-            <ion-select-option value="ar">Arabic</ion-select-option>
             <ion-select-option value="zh">Chinese</ion-select-option>
             <ion-select-option value="es">Spanish</ion-select-option>
             <ion-select-option value="fr">French</ion-select-option>
             <ion-select-option value="it">Italian</ion-select-option>
-            <ion-select-option value="ja">Japanese</ion-select-option>
-            <ion-select-option value="ko">Korean</ion-select-option>
-            <ion-select-option value="nl">Dutch</ion-select-option>
-            <ion-select-option value="pt">Portuguese</ion-select-option>
             <ion-select-option value="ru">Russian</ion-select-option>
-            <ion-select-option value="tr">Turkish</ion-select-option>
-            <ion-select-option value="hi">Hindi</ion-select-option>
+
           </ion-select>
         </ion-item>
       </ion-list>
@@ -143,7 +137,7 @@ const from = '2021-01-01';
 const to = '2021-01-01';
 const q = 'corona';
 
-const apikey = '862f5bbbf184b4f24aab9ce6de861153';
+const apikey = 'b555e71ca2871631d51111b2598d700e';
 
 const url = 'https://gnews.io/api/v4/top-headlines?token=' + apikey + "&max=10";
 
@@ -265,7 +259,7 @@ export default defineComponent({
   height: 100%;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   color: #fff;
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-family: "montserrat", cursive, sans-serif;
   background-color: rgba(0, 0, 0, 0.2);
   display: block;
   align-items: center;
