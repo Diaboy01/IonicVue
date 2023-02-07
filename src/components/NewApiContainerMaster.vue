@@ -92,7 +92,7 @@
     </ion-header>
     <ion-content class="ion-padding">
       <br>
-      <img src="http://45.81.234.92/FlashNews24Logo.png" class="logo-icon">
+      <img src="http://45.81.234.92/FlashNews24Logo.png" class="logo-icon" style="cursor: pointer;" onclick="window.location.reload();">
       <br>
       <ion-menu-toggle>
         <ion-icon :icon="settingsOutline" size="large" class="menu-icon"  ></ion-icon>

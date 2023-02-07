@@ -1,5 +1,5 @@
 <template>
-  <img src="http://45.81.234.92/FlashNews24Logo.png" class="logo-icon">
+  <img src="http://45.81.234.92/FlashNews24Logo.png" class="logo-icon" style="cursor: pointer;" onclick="window.location.reload();">
   <ul class="list-rendering">
     <li v-for="(item, index) in items" v-bind:key="index" class="list">
 
