@@ -32,7 +32,7 @@ import {defineComponent} from 'vue';
 import axios from 'axios';
 import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle } from '@ionic/vue';
 
-var apikey = 'b8122eca56e05f01e6702559c413f749';
+var apikey = '4c8644df001a1201ac76b90e55e7439d';
 
 var url = 'https://gnews.io/api/v4/top-headlines?token=' + apikey + "&max=1";
 
