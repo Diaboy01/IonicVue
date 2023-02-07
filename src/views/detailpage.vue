@@ -14,6 +14,8 @@
 
       </div>
 
+      <img src="http://45.81.234.92/worldnews.gif" id="background-container" alt="">
+
     </ion-content>
   </ion-page>
   <ion-footer>

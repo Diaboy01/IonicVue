@@ -2,20 +2,11 @@
   <ion-page>
     <ion-tabs>
       <ion-router-outlet></ion-router-outlet>
-      <ion-tab-bar slot="bottom">
-        <ion-tab-button tab="Start" href="">
-          <ion-icon :icon="triangle" />
-          <ion-label>Start</ion-label>
-        </ion-tab-button>
+      <ion-tab-bar slot="bottom" style="background: transparent">
           
-        <ion-tab-button tab="mainpage" href="/pages/mainpage">
+        <ion-tab-button tab="Start" href="" style="background: transparent; color:orange">
           <ion-icon :icon="ellipse" />
           <ion-label>Home</ion-label>
-        </ion-tab-button>
-        
-        <ion-tab-button tab="Back" href="">
-          <ion-icon :icon="square" />
-          <ion-label>Back</ion-label>
         </ion-tab-button>
       </ion-tab-bar>
     </ion-tabs>

@@ -146,7 +146,7 @@ const from = '2021-01-01';
 const to = '2021-01-01';
 //https://ionicframework.com/docs/api/datetime
 
-const apikey = 'e21cbd102ec9aaae358766a39120850f';
+const apikey = '129948095df6e338818f923ddad0aeee';
 
 const url = 'https://gnews.io/api/v4/top-headlines?token=' + apikey + "&max=10";
 
@@ -282,13 +282,6 @@ export default defineComponent({
 
 <style>
 
-.menu-icon {
-  width: 10%;
-  height: 10%;
-  float: right;
-  position: sticky;
-  cursor: pointer;
-}
 
 .list {
   width: 100%;
@@ -305,20 +298,20 @@ export default defineComponent({
   z-index: 10;
   overflow-y: scroll;
 }
-.logo-icon {
+
+.menu-icon {
   width: 10%;
-  height: 20%;
-  float: left;
+  height: 10%;
+  float: right;
   position: sticky;
+  cursor: pointer;
 }
 
-ion-toast {
-  color: black;
-}
-ion-toast .toast-button {
-  --background: #F4F4FA;
-  --box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.2);
-  --color: #4b4a50;
+.logo-icon {
+  width: min(35vw, 180px);
+  height: auto;
+  float: left;
+  position: sticky;
 }
 
 .map {

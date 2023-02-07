@@ -1,6 +1,5 @@
 <template>
-  <br>
-  <br>
+  <img src="http://45.81.234.92/FlashNews24Logo.png" class="logo-icon">
   <ul class="list-rendering">
     <li v-for="(item, index) in items" v-bind:key="index" class="list">
 
@@ -33,7 +32,7 @@ import {defineComponent} from 'vue';
 import axios from 'axios';
 import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle } from '@ionic/vue';
 
-var apikey = 'e21cbd102ec9aaae358766a39120850f';
+var apikey = '129948095df6e338818f923ddad0aeee';
 
 var url = 'https://gnews.io/api/v4/top-headlines?token=' + apikey + "&max=1";
 
@@ -89,5 +88,10 @@ ion-card-header.ios {
   display: flex;
   flex-flow: column-reverse;
 }
-
+.logo-icon {
+  width: min(35vw, 180px);
+  height: auto;
+  float: left;
+  position: sticky;
+}
 </style>
