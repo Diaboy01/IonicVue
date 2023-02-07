@@ -37,7 +37,7 @@
 import {defineComponent} from 'vue';
 import axios from 'axios';
 
-var apikey = '862f5bbbf184b4f24aab9ce6de861153';
+var apikey = '2c5305f0893c91a14fc5873cd59bd9a8';
 var topic = 'breaking-news';
 var lang = 'de';
 var country = 'de';

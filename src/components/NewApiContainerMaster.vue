@@ -130,13 +130,14 @@ import {
   IonMenu,
   IonToolbar} from '@ionic/vue';
 import i18next from 'i18next';
-
+import { toastController } from '@ionic/vue';
+import { globe } from "ionicons/icons";
 
 const from = '2021-01-01';
 const to = '2021-01-01';
 const q = 'corona';
 
-const apikey = 'b555e71ca2871631d51111b2598d700e';
+const apikey = '2c5305f0893c91a14fc5873cd59bd9a8';
 
 const url = 'https://gnews.io/api/v4/top-headlines?token=' + apikey + "&max=10";
 
@@ -203,6 +204,9 @@ export default defineComponent({
     },
     changeCountry(event: any) {
       let selectedCountry = event.target.value;
+
+      this.presentToast();
+
       this.updateParams({ country: selectedCountry });
     },
     updateParams(newParams: any) {
@@ -238,7 +242,35 @@ export default defineComponent({
       } catch (error) {
         console.error(error);
       }
-    }
+    },
+    async presentToast() {
+      const toast = await toastController.create({
+        duration: 5500,
+        color: 'dark',
+        position: 'top',
+        buttons: [
+          {
+            side: 'start',
+            icon: globe,
+            text: ' Zeige mir die Welt',
+            handler: () => {
+              console.log('Favorite clicked');
+            }
+          }, {
+            text: 'cancel',
+            role: 'cancel',
+            handler: () => {
+              console.log('Cancel clicked');
+            }
+          }
+        ]
+      });
+
+      await toast.present();
+
+      const { role } = await toast.onDidDismiss();
+      console.log('onDidDismiss resolved with role', role);
+    },
   },
 
 });
@@ -275,8 +307,14 @@ export default defineComponent({
   float: left;
   position: sticky;
 }
-ion-page {
-  background-color: transparent;
+
+ion-toast {
+  color: black;
+}
+ion-toast .toast-button {
+  --background: #F4F4FA;
+  --box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.2);
+  --color: #4b4a50;
 }
 
 </style>
