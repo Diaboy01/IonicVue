@@ -1,43 +1,40 @@
 <template>
-
+  <br>
+  <br>
   <ul class="list-rendering">
-    <br>
-    <br>
-    <li v-for="(item, index) in items" v-bind:key="index" class="list"
-        @click="this.$router.push('item.url')">
-      <br>
-      <br>
-      {{ item.title }}
-      <br>
-      <br>
-      <img style="width:50%" :src="item.image" alt="item.image">
-      <div class="text-cont">
-        {{ item.publishedAt }}
-        <br>
-        <br>
-        {{ item.description }}
-        <br>
-        <br>
-        {{ item.url }}
-        <br>
-        <br>
-        {{ item.content }}
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-      </div>
+    <li v-for="(item, index) in items" v-bind:key="index" class="list">
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{ item.title }}</ion-card-title>
+    </ion-card-header>
+    <a :href="item.url" @click.prevent="openInNewTab(item.url)">
+    <img alt="Silhouette of mountains" :src="item.image" style="width:50%; cursor: pointer;" />
+      </a>
+    <ion-card-header>
+      <ion-card-title>{{ item.description }}</ion-card-title>
+      <ion-card-subtitle>{{ item.publishedAt }}</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      {{ item.source.name }}
+      <p><a :href="item.url">{{ item.content }}</a></p>
+    </ion-card-content>
+  </ion-card>
     </li>
   </ul>
+
+
+
+
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
 import axios from 'axios';
+import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle } from '@ionic/vue';
 
-var apikey = '2c5305f0893c91a14fc5873cd59bd9a8';
+var apikey = '112bd8c5b6e65ce31594f900f1ef45e3';
 var topic = 'breaking-news';
 var lang = 'de';
 var country = 'de';
@@ -53,7 +50,7 @@ var url = 'https://gnews.io/api/v4/top-headlines?token=' + apikey + '&lang=' + l
 
 export default defineComponent({
   name: 'NewApiContainerDetail',
-  components: {},
+  components: { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle },
 
   data() {
     let title = JSON.stringify(this.$route.params.title);
@@ -67,6 +64,11 @@ export default defineComponent({
         })
     return {
       items: [],
+    }
+  },
+  methods: {
+    openInNewTab(url: string) {
+      window.open(url, "_blank");
     }
   },
 });
@@ -85,11 +87,13 @@ export default defineComponent({
   align-items: center;
   align-content: center;
   text-align: center;
-  cursor: pointer;
   z-index: 10;
   overflow-y: scroll;
 }
 
-
+ion-card-header.ios {
+  display: flex;
+  flex-flow: column-reverse;
+}
 
 </style>

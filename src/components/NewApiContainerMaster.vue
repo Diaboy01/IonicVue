@@ -94,7 +94,13 @@
         <ion-icon :icon="settingsOutline" size="large" class="menu-icon"  ></ion-icon>
 
       </ion-menu-toggle>
-
+      {{ stadt }}
+      <iframe v-if="showIFrame" class="map"
+              :src="mapSrc"
+              frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+      </iframe>
+      <br>
+      <br>
       <div v-if="items">
       <ul class="list-rendering">
         <li v-for="(item, index) in items" v-bind:key="index" class="list"
@@ -137,7 +143,7 @@ const from = '2021-01-01';
 const to = '2021-01-01';
 const q = 'corona';
 
-const apikey = '2c5305f0893c91a14fc5873cd59bd9a8';
+const apikey = '112bd8c5b6e65ce31594f900f1ef45e3';
 
 const url = 'https://gnews.io/api/v4/top-headlines?token=' + apikey + "&max=10";
 
@@ -189,6 +195,8 @@ export default defineComponent({
       imageSrc: '',
       settingsOutline,
       items: [],
+      mapSrc: '',
+      showIFrame: false,
     }
   },
   methods: {
@@ -198,14 +206,15 @@ export default defineComponent({
     },
     changeLang(event: any) {
       i18next.changeLanguage(event.target.value);
-      this.countryData(event.target.value);
       let selectedLang = event.target.value;
       this.updateParams({ lang: selectedLang });
     },
     changeCountry(event: any) {
       let selectedCountry = event.target.value;
 
-      this.presentToast();
+      this.countryData(event.target.value);
+
+      this.updateMap(event.target.value);
 
       this.updateParams({ country: selectedCountry });
     },
@@ -243,33 +252,19 @@ export default defineComponent({
         console.error(error);
       }
     },
-    async presentToast() {
-      const toast = await toastController.create({
-        duration: 5500,
-        color: 'dark',
-        position: 'top',
-        buttons: [
-          {
-            side: 'start',
-            icon: globe,
-            text: ' Zeige mir die Welt',
-            handler: () => {
-              console.log('Favorite clicked');
-            }
-          }, {
-            text: 'cancel',
-            role: 'cancel',
-            handler: () => {
-              console.log('Cancel clicked');
-            }
-          }
-        ]
-      });
+    async updateMap(countryCode: string) {
+      this.showIFrame = false;
+      try {
+        const response = await axios.get(`https://restcountries.com/v2/alpha/${countryCode}`);
+        this.mapSrc = `https://maps.google.com/maps?q=${response.data.capital}&t=k&z=7&ie=UTF8&iwloc=&output=embed`;
+        this.showIFrame = true;
 
-      await toast.present();
-
-      const { role } = await toast.onDidDismiss();
-      console.log('onDidDismiss resolved with role', role);
+        setTimeout(() => {
+          this.showIFrame = false;
+        }, 10000);
+    } catch (error) {
+      console.error(error);
+    }
     },
   },
 
@@ -315,6 +310,14 @@ ion-toast .toast-button {
   --background: #F4F4FA;
   --box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.2);
   --color: #4b4a50;
+}
+
+.map {
+  width:40%;
+  height:40%;
+  z-index: 1;
+  cursor: pointer;
+  z-index: 10;
 }
 
 </style>
