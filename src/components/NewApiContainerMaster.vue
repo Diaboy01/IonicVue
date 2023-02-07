@@ -2,7 +2,7 @@
     <ion-menu content-id="main-content" side="end" class="menu">
     <ion-header>
       <ion-toolbar>
-        <ion-title><ion-menu-toggle><ion-img style="height: 20%; width: 20%; display: block; margin: 0 auto;" src="https://www.pngkey.com/png/full/206-2069918_menu-icon-png-menu-icon-white-png.png" alt="" @click="window.location.reload();" ></ion-img></ion-menu-toggle></ion-title>
+        <ion-title><ion-menu-toggle><ion-icon :icon="settingsOutline" size="large" ></ion-icon></ion-menu-toggle></ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">
@@ -98,7 +98,8 @@
     <ion-content class="ion-padding">
       <br>
       <ion-menu-toggle>
-        <ion-img class="menu-icon" src="https://www.pngkey.com/png/full/206-2069918_menu-icon-png-menu-icon-white-png.png" alt=""></ion-img>
+        <ion-icon :icon="settingsOutline" size="large" class="menu-icon"  ></ion-icon>
+
       </ion-menu-toggle>
 
       <div v-if="items">
@@ -126,14 +127,16 @@
 import {defineComponent} from 'vue';
 import axios from 'axios';
 import {useRouter} from "vue-router";
+import { IonIcon } from '@ionic/vue';
+import { settingsOutline } from 'ionicons/icons';
 import {
   IonContent,
   IonHeader,
   IonPage,
   IonTitle,
+  IonMenu,
   IonToolbar} from '@ionic/vue';
 import i18next from 'i18next';
-import {reactive} from "vue";
 
 
 const from = '2021-01-01';
@@ -152,7 +155,9 @@ export default defineComponent({
     IonHeader,
     IonPage,
     IonTitle,
-    IonToolbar
+    IonToolbar,
+    IonMenu,
+    IonIcon
   },
   created() {
     let params = new URLSearchParams(window.location.search);
@@ -188,7 +193,8 @@ export default defineComponent({
       url: url,
       dataReady: false,
       imageSrc: '',
-      items: []
+      settingsOutline,
+      items: [],
     }
   },
   methods: {

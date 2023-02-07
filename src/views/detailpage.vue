@@ -16,6 +16,11 @@
 
     </ion-content>
   </ion-page>
+  <ion-footer>
+    <ion-toolbar>
+      <ion-title>Footer Toolbar</ion-title>
+    </ion-toolbar>
+  </ion-footer>
 </template>
 
 <script lang="ts">
