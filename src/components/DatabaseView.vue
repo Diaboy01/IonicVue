@@ -3,41 +3,35 @@
   <br>
   <br>
   <br>
-  <button @click="submitForm">Click me</button>
+  <ul>
+    <li v-for="user in users" :key="user.id">{{ user.nutzerid }} ({{ user.nutzername }})</li>
+  </ul>
   <br>
-  <br>
-    <button @click="count++"> {{ count }}</button>
+
 </template>
 
 <script>
 import {defineComponent} from 'vue';
 import axios from 'axios';
-//import Database from "@/assets/js/database.js";
+
 
 export default defineComponent({
   name: 'DatabaseView',
   components: {  },
-data() {
-  return {
-    count: 0,
-    formData: {
-      name: '',
-      email: '',
-      message: ''
+    data() {
+      return {
+        users: [],
+      };
     },
-  }
-},
-  methods: {
-    submitForm() {
-      axios.post('https://your-database-api.com/data', this.formData)
+    mounted() {
+      axios.get('http://45.81.234.92/get.php')
           .then(response => {
-            console.log(response);
+            this.users = response.data;
           })
           .catch(error => {
             console.error(error);
           });
-    }
-  }
+    },
 });
 
 </script>
