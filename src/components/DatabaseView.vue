@@ -43,12 +43,5 @@ data() {
 </script>
 
 <style>
-.map {
-  width:40%;
-  height:40%;
-  z-index: 1;
-  cursor: pointer;
-  z-index: 10;
-}
 
 </style>
