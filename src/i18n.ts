@@ -23,6 +23,8 @@ i18next
                     changeLanguage: 'Sprache ändern',
                     changeCountry: 'Land ändern',
                     changeTopic: 'Thema ändern',
+                    resetFilter: 'Filter zurücksetzen',
+                    search: 'Suche',
                 }
             },
             en: {
@@ -32,6 +34,8 @@ i18next
                     changeLanguage: 'Change language',
                     changeCountry: 'Change country',
                     changeTopic: 'Change topic',
+                    resetFilter: 'Reset filter',
+                    search: 'Search',
                 },
             },
             es: {
@@ -41,6 +45,8 @@ i18next
                     changeLanguage: 'Cambiar idioma',
                     changeCountry: 'Cambiar país',
                     changeTopic: 'Cambiar tema',
+                    resetFilter: 'Restablecer filtro',
+                    search: 'Buscar',
                 }
             },
             fr: {
@@ -50,6 +56,8 @@ i18next
                     changeLanguage: 'Changer de langue',
                     changeCountry: 'Changer de pays',
                     changeTopic: 'Changer de sujet',
+                    resetFilter: 'Réinitialiser le filtre',
+                    search: 'Chercher',
                 }
             },
             ru: {
@@ -59,6 +67,8 @@ i18next
                     changeLanguage: 'Изменить язык',
                     changeCountry: 'Изменить страну',
                     changeTopic: 'Изменить тему',
+                    resetFilter: 'Сбросить фильтр',
+                    search: 'Поиск',
 
                 }
             },
@@ -69,6 +79,8 @@ i18next
                     changeLanguage: '改变语言',
                     changeCountry: '改变国家',
                     changeTopic: '改变主题',
+                    resetFilter: '重置过滤器',
+                    search: '搜索',
 
                 }
             },
@@ -79,6 +91,8 @@ i18next
                     changeLanguage: 'Cambia lingua',
                     changeCountry: 'Cambia nazione',
                     changeTopic: 'Cambia argomento',
+                    resetFilter: 'Resetta filtro',
+                    search: 'Cerca',
                 }
             }
 

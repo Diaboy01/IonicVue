@@ -9,7 +9,7 @@
       <h1>{{ $t('settings') }}</h1>
 
       <!--ion-search Keyword-->
-      <ion-searchbar :debounce="1000" @ionInput="qsearch($event)"> </ion-searchbar>
+      <ion-searchbar :debounce="1000" @ionInput="qsearch($event)" :placeholder="$t('search')" > </ion-searchbar>
       <!--ion-list change topic-->
       <ion-list>
         <ion-item>
@@ -77,13 +77,18 @@
             <ion-select-option value="it">Italy</ion-select-option>
             <ion-select-option value="ru">Russia</ion-select-option>
             <ion-select-option value="es">Spain</ion-select-option>
+            <ion-select-option value="tr">Turkey</ion-select-option>
 
           </ion-select>
         </ion-item>
       </ion-list>
-
-
+      <br>
       <img v-if="dataReady" style="width: 15%; height: 3%" :src="imageSrc" alt="countrys.name">
+      <br>
+      <!--reset filter button-->
+      <button @click="resetParams" class="reset-button">{{ $t('resetFilter') }}</button>
+
+
 
     </ion-content>
   </ion-menu>
@@ -98,7 +103,7 @@
         <ion-icon :icon="settingsOutline" size="large" class="menu-icon"  ></ion-icon>
 
       </ion-menu-toggle>
-      {{ stadt }}
+
       <iframe v-if="showIFrame" class="map"
               :src="mapSrc"
               frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
@@ -146,7 +151,7 @@ const from = '2021-01-01';
 const to = '2021-01-01';
 //https://ionicframework.com/docs/api/datetime
 
-const apikey = '129948095df6e338818f923ddad0aeee';
+const apikey = 'b8122eca56e05f01e6702559c413f749';
 
 const url = 'https://gnews.io/api/v4/top-headlines?token=' + apikey + "&max=10";
 
@@ -240,6 +245,21 @@ export default defineComponent({
 
       this.articleData(url + "&" + currentParams.toString());
     },
+    resetParams() {
+      let href = window.location.href;
+      let currentParams = new URL(href).searchParams;
+
+      currentParams.delete('q');
+      currentParams.delete('topic');
+      currentParams.delete('lang');
+      currentParams.delete('country');
+
+      let updatedHref = href.split("?")[0] + "?" + currentParams.toString();
+      window.history.pushState({ path: updatedHref }, "", updatedHref);
+
+      this.articleData(url + "&" + currentParams.toString());
+      window.location.reload();
+    },
 
     async articleData(link: string) {
       try {
@@ -320,6 +340,12 @@ export default defineComponent({
   z-index: 1;
   cursor: pointer;
   z-index: 10;
+}
+.reset-button {
+  color: red;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 </style>
