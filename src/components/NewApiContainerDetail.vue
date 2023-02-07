@@ -1,16 +1,31 @@
 <template>
 
   <ul class="list-rendering">
-
+    <br>
+    <br>
     <li v-for="(item, index) in items" v-bind:key="index" class="list"
-        @click="this.$router.push('/pages/')">
-      <img style="width:10%" :src="item.image" alt="item.image">
+        @click="this.$router.push('item.url')">
+      <br>
+      <br>
+      {{ item.title }}
+      <br>
+      <br>
+      <img style="width:50%" :src="item.image" alt="item.image">
       <div class="text-cont">
-        {{ item.title }}
+        {{ item.description }}
         <br>
         <br>
+        {{ item.url }}
+        <br>
+        <br>
+        {{ item.publishedAt }}
         {{ item.content }}
-
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
       </div>
     </li>
   </ul>
@@ -58,16 +73,21 @@ export default defineComponent({
 <style>
 
 .list {
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  color: #fff;
+  font-family: "montserrat", cursive, sans-serif;
+  background-color: rgba(0, 0, 0, 0.2);
   display: block;
-}
-
-
-#container {
+  align-items: center;
+  align-content: center;
   text-align: center;
-  position: absolute;
-  left: 0;
-  right: 0;
+  cursor: pointer;
+  z-index: 10;
+  overflow-y: scroll;
 }
+
 
 
 </style>
