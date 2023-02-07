@@ -12,13 +12,15 @@
       <br>
       <img style="width:50%" :src="item.image" alt="item.image">
       <div class="text-cont">
+        {{ item.publishedAt }}
+        <br>
+        <br>
         {{ item.description }}
         <br>
         <br>
         {{ item.url }}
         <br>
         <br>
-        {{ item.publishedAt }}
         {{ item.content }}
         <br>
         <br>
@@ -55,7 +57,7 @@ export default defineComponent({
 
   data() {
     let title = JSON.stringify(this.$route.params.title);
-    let cleanTitle = title.replaceAll('"', '')
+    let cleanTitle = title.replaceAll('"', '').replaceAll(':', '')
     axios.get('https://gnews.io/api/v4/top-headlines?token=' + apikey + '&in=title&q="' + cleanTitle +'"').then((response) => {
       this.items = response.data.articles;
     })
