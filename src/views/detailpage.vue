@@ -18,7 +18,7 @@
   </ion-page>
   <ion-footer>
     <ion-toolbar>
-      <ion-title>Footer Toolbar</ion-title>
+      <ion-title>@FLASHNEWS24</ion-title>
     </ion-toolbar>
   </ion-footer>
 </template>

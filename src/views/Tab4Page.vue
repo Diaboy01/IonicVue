@@ -8,7 +8,7 @@
 
       <div id="container">
 
-        <MapView name="MapView"/>
+        <DatabaseView name="DatabaseView"/>
 
       </div>
 
@@ -18,11 +18,12 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import MapView from "@/components/MapView.vue";
+import MapView from "@/components/DatabaseView.vue";
+import DatabaseView from "@/components/DatabaseView.vue";
 
 export default defineComponent({
   name: 'Tab4Page',
-  components: {MapView}
+  components: {DatabaseView}
 });
 </script>
 

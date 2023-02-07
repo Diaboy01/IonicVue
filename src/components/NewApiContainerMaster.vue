@@ -7,6 +7,9 @@
     </ion-header>
     <ion-content class="ion-padding">
       <h1>{{ $t('settings') }}</h1>
+
+      <!--ion-search Keyword-->
+      <ion-searchbar :debounce="1000" @ionInput="qsearch($event)"> </ion-searchbar>
       <!--ion-list change topic-->
       <ion-list>
         <ion-item>
@@ -79,6 +82,7 @@
         </ion-item>
       </ion-list>
 
+
       <img v-if="dataReady" style="width: 15%; height: 3%" :src="imageSrc" alt="countrys.name">
 
     </ion-content>
@@ -136,14 +140,13 @@ import {
   IonMenu,
   IonToolbar} from '@ionic/vue';
 import i18next from 'i18next';
-import { toastController } from '@ionic/vue';
-import { globe } from "ionicons/icons";
+
 
 const from = '2021-01-01';
 const to = '2021-01-01';
-const q = 'corona';
+//https://ionicframework.com/docs/api/datetime
 
-const apikey = '112bd8c5b6e65ce31594f900f1ef45e3';
+const apikey = 'e21cbd102ec9aaae358766a39120850f';
 
 const url = 'https://gnews.io/api/v4/top-headlines?token=' + apikey + "&max=10";
 
@@ -197,9 +200,15 @@ export default defineComponent({
       items: [],
       mapSrc: '',
       showIFrame: false,
+      searchString: '',
     }
   },
   methods: {
+    qsearch(event: any) {
+      let searchString = event.target.value;
+      this.updateParams({ q: searchString });
+      //this.articleData(`${url}&q=${q}&from=${from}&to=${to}`);
+    },
     changeTopic(event: any) {
       let selectedTopic = event.target.value;
       this.updateParams({ topic: selectedTopic });

@@ -26,7 +26,6 @@
 
 
 
-
 </template>
 
 <script lang="ts">
@@ -34,18 +33,9 @@ import {defineComponent} from 'vue';
 import axios from 'axios';
 import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle } from '@ionic/vue';
 
-var apikey = '112bd8c5b6e65ce31594f900f1ef45e3';
-var topic = 'breaking-news';
-var lang = 'de';
-var country = 'de';
-//var max = 3;
-var from = '2021-01-01';
-var to = '2021-01-01';
-var q = 'corona';
-var In = 'title';
-var url = 'https://gnews.io/api/v4/top-headlines?token=' + apikey + '&lang=' + lang + '&country=' + country + '&topic=' + topic + '&q='+q+'&sortby=publishedAt';
-//var url = 'https://gnews.io/api/v4/top-headlines?token=' + apikey + '&lang=' + lang + '&country=' + country + '&topic=' + topic + '&q='+q+'&max='+ max +'&sortby=publishedAt';
-//url = 'https://gnews.io/api/v4/top-headlines?token=d2a79ae546829bf9f16e81bd91a39197&lang=de';
+var apikey = 'e21cbd102ec9aaae358766a39120850f';
+
+var url = 'https://gnews.io/api/v4/top-headlines?token=' + apikey + "&max=1";
 
 
 export default defineComponent({
@@ -71,6 +61,10 @@ export default defineComponent({
       window.open(url, "_blank");
     }
   },
+
+
+
+
 });
 </script>
 
