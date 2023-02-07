@@ -72,12 +72,9 @@
             <ion-select-option value="fr">France</ion-select-option>
             <ion-select-option value="gb">Great Britain</ion-select-option>
             <ion-select-option value="it">Italy</ion-select-option>
-            <ion-select-option value="jp">Japan</ion-select-option>
             <ion-select-option value="ru">Russia</ion-select-option>
             <ion-select-option value="es">Spain</ion-select-option>
-            <ion-select-option value="tr">Turkey</ion-select-option>
-            <ion-select-option value="ae">United Arab Emirates</ion-select-option>
-            <ion-select-option value="za">South Africa</ion-select-option>
+
           </ion-select>
         </ion-item>
       </ion-list>
