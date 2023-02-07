@@ -1,15 +1,11 @@
 <template>
   <ion-page>
     <ion-header>
-      <ion-toolbar>
-        <ion-title>Tab 2</ion-title>
-      </ion-toolbar>
+
     </ion-header>
     <ion-content :fullscreen="true">
       <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">Tab 2</ion-title>
-        </ion-toolbar>
+
       </ion-header>
 
       <div id="container">
@@ -17,6 +13,7 @@
         <NewApiContainerDetail name="NewApiContainerDetail"/>
 
       </div>
+
     </ion-content>
   </ion-page>
 </template>
@@ -29,6 +26,40 @@ import CountButton from "@/components/CountButton.vue";
 
 export default defineComponent({
   name: 'Tab2Page',
-  components: {NewApiContainerDetail, IonHeader, IonToolbar, IonTitle, IonContent, IonPage}
+  components: {NewApiContainerDetail}
 });
 </script>
+<style>
+
+#container {
+  top: 0;
+  left: 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+  position: absolute;
+  z-index: -3;
+  opacity: 0.75;
+}
+ion-page {
+  background-color: transparent;
+}
+#background-container{
+  background-size: cover;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: black;
+  z-index: -4;
+
+}
+
+</style>
