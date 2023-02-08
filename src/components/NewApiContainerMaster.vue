@@ -151,7 +151,7 @@ const from = '2021-01-01';
 const to = '2021-01-01';
 //https://ionicframework.com/docs/api/datetime
 
-const apikey = '4c8644df001a1201ac76b90e55e7439d';
+const apikey = 'caaf41b70255b9726942e04cebdf3888'; //TODO: insert your api key here
 
 const url = 'https://gnews.io/api/v4/top-headlines?token=' + apikey + "&max=10";
 
